@@ -1,0 +1,55 @@
+version: '3.4'
+
+volumes:
+  sqlserverdata:
+    external: true
+
+services:
+  frontspa:
+    image:  multizoneit/trilly.frontspa
+    build:
+      context: .
+      dockerfile: Web/FrontSpa/Dockerfile
+    ports:
+      - "10001:80"
+    container_name: trilly.frontspa
+
+  catalogapi:
+    image: multizoneit/trilly.catalogapi
+    build:
+      context: .
+      dockerfile: Services/Catalog/CatalogApi/Dockerfile
+    environment:
+      - DatabaseServer=trilly.sql
+      - DataBasePort=1845
+      - DatabaseName=TrillyDb
+      - DatabaseUser=sa
+      - DatabasePassword=79VqT2b#
+    ports:
+      - "10100:80"
+    restart: on-failure
+    container_name: trilly.catalogapi
+    depends_on:
+      - mssqlserver
+      - seq
+
+  seq:
+    image: datalust/seq:latest
+    container_name: trilly.seq
+    ports:
+      - "10080:80"
+      - "15341:5341"
+    environment:
+      - ACCEPT_EULA=Y
+
+  mssqlserver:
+    image: microsoft/mssql-server-linux:2017-latest
+    volumes:
+      - sqlserverdata:/var/opt/mssql
+    ports:
+      - "1845:1433"
+    container_name: trilly.sql
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=79VqT2b#
+      - MSSQL_PID=Express

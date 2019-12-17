@@ -1,0 +1,29 @@
+<app-categories></app-categories>
+<app-contact-info-cards></app-contact-info-cards>
+<div class="contact_form">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <div class="contact_form_container">
+          <div class="contact_form_title">Formularz kontaktu</div>
+
+          <form action="#" id="contact_form">
+            <div class="contact_form_inputs d-flex flex-md-row flex-column justify-content-between align-items-between">
+              <input type="text" id="contact_form_name" class="contact_form_name input_field" placeholder="Imię i nazwisko" required="required" data-error="Proszę określić imię">
+              <input type="text" id="contact_form_email" class="contact_form_email input_field" placeholder="Email" required="required" data-error="Proszę podać adres email">
+              <input type="text" id="contact_form_phone" class="contact_form_phone input_field" placeholder="Twój numer telefonu">
+            </div>
+            <div class="contact_form_text">
+              <textarea id="contact_form_message" class="text_field contact_form_message" name="message" rows="4" placeholder="Wiadomość" required="required" data-error="Please, write us a message."></textarea>
+            </div>
+            <div class="contact_form_button">
+              <button type="submit" class="button contact_submit_button">Wyślij</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel"></div>
+</div>

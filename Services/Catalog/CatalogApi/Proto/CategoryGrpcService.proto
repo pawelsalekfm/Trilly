@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option csharp_namespace = "CatalogApi";
+
+package CategoryProto;
+
+service CategoryGrpc {
+	rpc GetMainCategories (GetMainCategoriesRequest) returns (GetMainCategoriesResponse);
+	rpc GetSubCategories (GetSubCategoriesRequest) returns (GetSubCategoriesResponse);
+}
+
+message GetMainCategoriesRequest {
+
+}
+
+message GetMainCategoriesResponse {
+	int32 Count = 1;
+	repeated CategoryObject Categories = 2;
+}
+
+message GetSubCategoriesRequest {
+	int32 CategoryId = 1;
+}
+
+message GetSubCategoriesResponse {
+	int32 Count = 1;
+	repeated CategoryObject Categories = 2;
+}
+
+message CategoryObject {
+	int32 Id = 1;
+	string Name = 2;
+	string Slug = 3;
+}

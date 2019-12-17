@@ -1,0 +1,10 @@
+.cat_menu_container ul
+{
+  visibility: hidden;
+}
+
+.cat_menu_container:hover .cat_menu
+{
+  visibility: visible;
+  opacity: 1;
+}
